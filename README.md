@@ -53,6 +53,9 @@ https://accounts.tacc.utexas.edu/
 
 1. first try [cm4ai-tutorial-immunofluorescence/](https://github.com/CM4AI/cm4ai-tutorial-immunofluorescence/tree/main])
 
+2. Try HPA Cell Segmenation
+need cuda toolkit >> Run on TACC:
 
+`$ ssh username@frontera.tacc.utexas.edu`
 
 # Day 2 (9AM-5PM)

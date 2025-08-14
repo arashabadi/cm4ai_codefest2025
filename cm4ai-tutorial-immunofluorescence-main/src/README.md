@@ -1,4 +1,5 @@
-### What this notebook is for
+# EDA Notebook explanation
+
 - **Purpose**: Exploratory data analysis for a 4‑channel immunofluorescence dataset. It indexes image files, parses RO‑Crate metadata to attach antibody/gene annotations, generates per‑treatment node-attribute TSVs for downstream graphs, computes basic image stats, and prints a human-readable summary with one diagnostic plot.
 
 ### Data assumptions and layout
@@ -84,3 +85,8 @@
   - 3 treatments, 2048×2048 images, 12.8k multichannel composites
   - 465 unique green-channel antibodies
   - Channel stains: Red=Tubulin, Blue=DAPI, Yellow=Calreticulin
+
+
+--------------------------------
+
+  # 

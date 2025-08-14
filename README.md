@@ -37,12 +37,9 @@ DenseMap > IF embading maker
 also [SubCell](https://www.biorxiv.org/content/10.1101/2024.12.06.627299v1): Vision foundation models for microscopy
 capture single-cell biology
 
-
-I am thinking of using embedding + AI agents to analyze raw data. 
-
-
+some projects:
 1. Embedding
-2. Building communty network > classic lovien algorithm
+2. Building communty network and hierarchy > classic lovien algorithm 
 3. Visible Neural Networks (VNN)
 
 
@@ -53,4 +50,9 @@ https://accounts.tacc.utexas.edu/
 
 
 ## let's run IF tutorial and then subcell
+
+1. first try [cm4ai-tutorial-immunofluorescence/](https://github.com/CM4AI/cm4ai-tutorial-immunofluorescence/tree/main])
+
+
+
 # Day 2 (9AM-5PM)

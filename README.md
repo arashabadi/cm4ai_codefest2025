@@ -46,16 +46,25 @@ some projects:
 Compute:
 https://accounts.tacc.utexas.edu/
 
+`$ ssh username@frontera.tacc.utexas.edu`
 
 
 
 ## let's run IF tutorial and then subcell
 
 1. first try [cm4ai-tutorial-immunofluorescence/](https://github.com/CM4AI/cm4ai-tutorial-immunofluorescence/tree/main])
+we should download 11GB data IF images in RO-Crate format
 
-2. Try HPA Cell Segmenation
-need cuda toolkit >> Run on TACC:
+we downloaded by python src/download.py
 
-`$ ssh username@frontera.tacc.utexas.edu`
+2. SubCell requires segmented images of cells , so we are going to perform cell segmentaiton by the same tool they used for preparing their data to train their model. HPA Cell Segmenation
+
+- Try HPA Cell Segmenation > reuqires cuda toolkit (NVIDIA GPU) >> Run on TACC or Cheaha
+
+- at [HPA Cell Segmentation github](https://github.com/CellProfiling/HPA-Cell-Segmentation)
+ Clone > conda env create -f environment.yml > sh install.sh
+
+
+But still cannot run hpacellseg
 
 # Day 2 (9AM-5PM)

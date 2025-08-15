@@ -69,5 +69,14 @@ Hpacellseg should be run as a python script.
 # Day 2 (9AM-5PM)
 
 I have to connect my github account to TACC / shift to cheaha / use wget or curl to download the prepared code from github into TACC.
+I will go with wget raw file (python script to run hpacellseg) from github.
 
+### prepare testing data to run hpacellseg
+1. connect to TACC via ssh
+2. cd $WORK
+3. cd ./analysis
+4. bash `data_transfer.sh` to transfer 10 images to copy 10 images from "cm4ai-tutorial-immunofluorescence-main/data/raw/paclitaxel/blue" to "./data/"
+5. conda activate hpacellseg
+6. python ./run_hpa_segmentation.py
 
+### run hpacellseg

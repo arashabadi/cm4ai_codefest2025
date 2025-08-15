@@ -78,9 +78,15 @@ We will sort 10 first images from paclitaxel channels for hpacellseg input.
 
 4. Run hpacellseg
 
+    https://github.com/Bayes-Student1/CM4AI-Group-Project-
+
 5. prepare cropped images for subcell input
 
+    https://github.com/morgansmith27
+
 6. Run subcell
+
+
 
 # What we’ll be working on for the next few days.
 Morgan: Cropping and subcellular visualization on the stacked images (all colors on new dataset)

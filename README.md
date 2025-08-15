@@ -4,9 +4,6 @@ This repo is related to the participation in 2025 CM4AI Hackathon at UAB
 ---
 # Day 1 (9AM-5PM)
 
-also [SubCell](https://www.biorxiv.org/content/10.1101/2024.12.06.627299v1): Vision foundation models for microscopy
-capture single-cell biology
-
 some suggested projects:
 1. Embedding
 2. Building communty network and hierarchy > classic lovien algorithm 
@@ -22,6 +19,9 @@ Our team (`Embedding Mafia`)
 - Rebecca
 - Jedediah
 - Mona
+
+We are going to Implement alternate image embedding methods, [SubCell](https://www.biorxiv.org/content/10.1101/2024.12.06.627299v1)
+
 
 ### let's run IF tutorial and then subcell
 
@@ -43,7 +43,7 @@ Hpacellseg should be run as a python script.
 ---
 # Day 2 (9AM-5PM)
 
-I have to connect my github account to TACC / shift to cheaha / use wget or curl to download the prepared code from github into TACC.
+We have to connect my github account to TACC / shift to cheaha / use wget or curl to download the prepared code from github into TACC.
 I will go with wget raw file (python script to run hpacellseg) from github.
 
 ### prepare testing data to run hpacellseg

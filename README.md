@@ -1,8 +1,6 @@
 # cm4ai_codefest2025
 This repo is related to my participation in 2025 CM4AI Hackathon at UAB
 
-
-
 My notes:
 - [CM4AI Data - Functional Analysis with CRISPR/PerturbSeq](https://www.youtube.com/watch?v=7RaOyiLi2cQ)
 Perturbation Correlation Network
@@ -30,7 +28,7 @@ Docs:
 - [CellMaps Pipeline](https://cellmaps-pipeline.readthedocs.io/en/latest/)
 
 ---
-# Day 1 (9AM-7PM)
+# Day 1 (9AM-5PM)
 
 DenseMap > IF embading maker
 
@@ -64,7 +62,12 @@ we downloaded by python src/download.py
 - at [HPA Cell Segmentation github](https://github.com/CellProfiling/HPA-Cell-Segmentation)
  Clone > conda env create -f environment.yml > sh install.sh
 
+Hpacellseg should be run as a python script.
 
-But still cannot run hpacellseg
+
 
 # Day 2 (9AM-5PM)
+
+I have to connect my github account to TACC / shift to cheaha / use wget or curl to download the prepared code from github into TACC.
+
+

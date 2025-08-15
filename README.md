@@ -48,7 +48,7 @@ https://accounts.tacc.utexas.edu/
 
 
 
-## let's run IF tutorial and then subcell
+### let's run IF tutorial and then subcell
 
 1. first try [cm4ai-tutorial-immunofluorescence/](https://github.com/CM4AI/cm4ai-tutorial-immunofluorescence/tree/main])
 we should download 11GB data IF images in RO-Crate format
@@ -73,10 +73,28 @@ I will go with wget raw file (python script to run hpacellseg) from github.
 
 ### prepare testing data to run hpacellseg
 1. connect to TACC via ssh
-2. cd $WORK
-3. cd ./analysis
-4. bash `data_transfer.sh` to transfer 10 images to copy 10 images from "cm4ai-tutorial-immunofluorescence-main/data/raw/paclitaxel/blue" to "./data/"
-5. conda activate hpacellseg
-6. python ./run_hpa_segmentation.py
+2. idev > 3 (default)
+3. cd $WORK
+4. cd ./analysis
+5. bash `data_transfer.sh` to transfer 10 images to copy 10 images from "cm4ai-tutorial-immunofluorescence-main/data/raw/paclitaxel/blue" to "./data/"
+6. conda activate hpacellseg
 
 ### run hpacellseg
+1. python ./run_hpa_segmentation.py
+> it will generate a directory called `segmentation_results` in the same directory of analysis 
+
+2. I will transfer the results into my local machine (MacBook) via scp command
+
+```bash
+hostname 
+#(should be local machine)
+
+cd ~
+scp -r USERNAME@frontera.tacc.utexas.edu:/work2/10900/USERNAME/frontera/analysis/segmentation_results ~/tacc 
+# tacc is a testing directory in my local machine
+
+```
+
+3. Now let's prepare the data for input of subcell
+
+

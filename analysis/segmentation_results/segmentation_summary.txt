@@ -1,0 +1,32 @@
+HPA-Cell-Segmentation Results Summary
+========================================
+
+Total images processed: 10
+Output directory: segmentation_results
+Model used: nuclei_model.pth
+Scale factor: 0.25
+Device: CPU
+Padding: Enabled
+Multi-channel model: False
+
+Files generated:
+  B2AI_5_Paclitaxel_B10_R11_z02_blue_nuclei_mask.png
+  B2AI_2_Paclitaxel_B7_R11_z00_blue_nuclei_mask.png
+  B2AI_5_Paclitaxel_B7_R13_z02_blue_nuclei_mask.png
+  B2AI_3_Paclitaxel_C7_R1_z02_blue_nuclei_mask.png
+  B2AI_2_Paclitaxel_D3_R11_z02_blue_nuclei_mask.png
+  B2AI_2_Paclitaxel_B12_R6_z01_blue_nuclei_mask.png
+  B2AI_5_Paclitaxel_H1_R11_z02_blue_nuclei_mask.png
+  B2AI_5_Paclitaxel_B6_R2_z01_blue_nuclei_mask.png
+  B2AI_2_Paclitaxel_B3_R12_z00_blue_nuclei_mask.png
+  B2AI_1_Paclitaxel_E1_R1_z01_blue_nuclei_mask.png
+  B2AI_2_Paclitaxel_B7_R11_z00_blue_nuclei_prediction.npy
+  B2AI_1_Paclitaxel_E1_R1_z01_blue_nuclei_prediction.npy
+  B2AI_2_Paclitaxel_B3_R12_z00_blue_nuclei_prediction.npy
+  B2AI_5_Paclitaxel_B6_R2_z01_blue_nuclei_prediction.npy
+  B2AI_5_Paclitaxel_H1_R11_z02_blue_nuclei_prediction.npy
+  B2AI_2_Paclitaxel_D3_R11_z02_blue_nuclei_prediction.npy
+  B2AI_5_Paclitaxel_B10_R11_z02_blue_nuclei_prediction.npy
+  B2AI_3_Paclitaxel_C7_R1_z02_blue_nuclei_prediction.npy
+  B2AI_5_Paclitaxel_B7_R13_z02_blue_nuclei_prediction.npy
+  B2AI_2_Paclitaxel_B12_R6_z01_blue_nuclei_prediction.npy

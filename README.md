@@ -20,12 +20,15 @@ Our team (`Embedding Mafia`)
 - Jedediah
 - Mona
 
-We are going to Implement alternate image embedding methods, [SubCell](https://www.biorxiv.org/content/10.1101/2024.12.06.627299v1)
-
+We are going to Implement alternate image embedding method `SubCell`.
+- [SubCell Preprint](https://www.biorxiv.org/content/10.1101/2024.12.06.627299v1)
+- [The code necessary for inference(SubCellPortable)](https://github.com/czi-ai/SubCellPortable)
+- [CZI Documentation](https://virtualcellmodels.cziscience.com/model/subcell)
+- [CZI Demo on SARS-CoV-2(subcell-tutorial)](https://virtualcellmodels.cziscience.com/tutorial/subcell-tutorial)
 
 ### let's run IF tutorial and then subcell
 
-1. first try [cm4ai-tutorial-immunofluorescence/](https://github.com/CM4AI/cm4ai-tutorial-immunofluorescence/tree/main])
+1. First try [cm4ai-tutorial-immunofluorescence/](https://github.com/CM4AI/cm4ai-tutorial-immunofluorescence/tree/main])
 we should download 11GB data IF images in RO-Crate format
 
 we downloaded by python src/download.py
@@ -39,11 +42,10 @@ we downloaded by python src/download.py
 
 Hpacellseg should be run as a python script.
 
-
 ---
 # Day 2 (9AM-5PM)
 
-We have to connect my github account to TACC / shift to cheaha / use wget or curl to download the prepared code from github into TACC.
+I have to connect my github account to TACC / shift to cheaha / use wget or curl to download the prepared code from github into TACC.
 I will go with wget raw file (python script to run hpacellseg) from github.
 
 ### prepare testing data to run hpacellseg
@@ -72,9 +74,25 @@ scp -r USERNAME@frontera.tacc.utexas.edu:/work2/10900/USERNAME/frontera/analysis
 
 3. Now let's prepare the data for input of subcell
 
-We will sort 10 images from paclitaxel/blue channel to be 
+We will sort 10 first images from paclitaxel channels for hpacellseg input.
 
+4. Run hpacellseg
 
+5. prepare cropped images for subcell input
+
+6. Run subcell
+
+# What we’ll be working on for the next few days.
+Morgan: Cropping and subcellular visualization on the stacked images (all colors on new dataset)
+Google Colab (possibly Visual Studio Code)
+Jebediah: Subcell tutorial working to change data
+Rebecca: Currently rerunning the segmentation and renaming the files
+VS Code
+Arash: Project management and github maintanence
+Mona: Background/Significance for powerpoint
+*Editing google slides/powerpoint for everyone
+
+---
 My notes:
 - [CM4AI Data - Functional Analysis with CRISPR/PerturbSeq](https://www.youtube.com/watch?v=7RaOyiLi2cQ)
 Perturbation Correlation Network

@@ -4,7 +4,7 @@
 # Transfers 10 images from cm4ai-tutorial-immunofluorescence-main/data/raw/paclitaxel/blue to ./data/
 
 # Source and destination directories
-SOURCE_DIR="../cm4ai-tutorial-immunofluorescence-main/data/raw/paclitaxel/blue"
+SOURCE_DIR="../cm4ai-tutorial-immunofluorescence/data/raw/paclitaxel/blue"
 DEST_DIR="../data"
 
 # Check if source directory exists

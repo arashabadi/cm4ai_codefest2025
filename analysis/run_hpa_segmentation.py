@@ -55,7 +55,7 @@ def main():
     """Main function to run HPA-Cell-Segmentation."""
     
     # Setup paths
-    data_dir = Path(__file__).parent.parent / "data"
+    data_dir = Path(__file__).parent.parent / "../data"
     analysis_dir = Path(__file__).parent
     output_dir = analysis_dir / "segmentation_results"
     

@@ -17,11 +17,11 @@ Provided compute power ([TACC by The University of Texas at Austin](https://acco
 `$ ssh username@frontera.tacc.utexas.edu`
 
 ### Our Team (`Embedding Mafia`)
-- Arash Abadi
-- Morgan Smith
-- Rebecca Bernal
-- Jedediah Smith
-- Mona Shabana
+- Arash Abadi (UAB)
+- Morgan Smith (UT Health San Antonio)
+- Rebecca Bernal (UT Health San Antonio)
+- Jedediah Smith (UAB)
+- Mona Shabana (UAB)
 
 ### Selected Project: 
 We are going to Implement alternate image embedding method `SubCell` for immunofluorescence images:
@@ -114,7 +114,7 @@ We would like to thank the following people who provided significant assistance 
 - Erin
 
 ---
-My notes:
+# My extra notes:
 - [CM4AI Data - Functional Analysis with CRISPR/PerturbSeq](https://www.youtube.com/watch?v=7RaOyiLi2cQ)
 
 Perturbation Correlation Network
@@ -141,4 +141,4 @@ pip install cellmaps_pipeline
 Docs:
 - [CellMaps Pipeline](https://cellmaps-pipeline.readthedocs.io/en/latest/)
 
-DenseMap > IF embading maker
+DenseMap (?)> IF embading maker

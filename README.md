@@ -76,16 +76,16 @@ scp -r USERNAME@frontera.tacc.utexas.edu:/work2/10900/USERNAME/frontera/analysis
 
 We will sort 10 first images from paclitaxel channels for hpacellseg input.
 
-4. Run hpacellseg
+4. Run hpacellseg (Rebecca)
 
     https://github.com/Bayes-Student1/CM4AI-Group-Project-
 
-5. prepare cropped images for subcell input
+5. prepare cropped images for subcell input (Morgan)
 
     https://github.com/morgansmith27
 
-6. Run subcell
-
+6. Run subcell (Jedediah)
+   https://github.com/OriginalBrick/cm4ai-codefest
 
 
 # What we’ll be working on for the next few days.

@@ -76,7 +76,7 @@ scp -r USERNAME@frontera.tacc.utexas.edu:/work2/10900/USERNAME/frontera/analysis
 
 3. Now let's prepare the data for input of subcell
 
-We will sort 10 first images from paclitaxel channels for hpacellseg input.
+We will select 10 first images from paclitaxel channels for hpacellseg input > [Access the data](https://github.com/arashabadi/cm4ai_codefest2025/tree/main/data)
 
 4. Run hpacellseg (Rebecca)
 

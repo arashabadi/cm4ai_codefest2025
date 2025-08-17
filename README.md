@@ -32,7 +32,7 @@ We are going to Implement alternate image embedding method `SubCell` for immunof
 
 ### Let's run IF tutorial and then subcell
 
-1. First try [cm4ai-tutorial-immunofluorescence/](https://github.com/CM4AI/cm4ai-tutorial-immunofluorescence/tree/main])
+1. First try [cm4ai-tutorial-immunofluorescence/](https://github.com/CM4AI/cm4ai-tutorial-immunofluorescence/])
 we should download 11GB data IF images in RO-Crate format
 
 we downloaded by python src/download.py
@@ -76,7 +76,10 @@ scp -r USERNAME@frontera.tacc.utexas.edu:/work2/10900/USERNAME/frontera/analysis
 
 3. Now let's prepare the data for input of subcell
 
-We will select 10 first images from paclitaxel channels for hpacellseg input > [Access the data](https://github.com/arashabadi/cm4ai_codefest2025/tree/main/data)
+    ### ***[Access Data](https://github.com/arashabadi/cm4ai_codefest2025/tree/main/data)***
+
+    > We have selected 10 first images from paclitaxel channels (related to [cm4ai-tutorial-immunofluorescence/](https://github.com/CM4AI/cm4ai-tutorial-immunofluorescence/)) for hpacellseg input.
+
 
 4. Run hpacellseg (Rebecca)
 

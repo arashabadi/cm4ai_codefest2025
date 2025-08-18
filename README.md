@@ -115,6 +115,25 @@ We would like to thank the following people who provided significant assistance 
 
 ---
 # My extra notes:
+
+### Project Theme - Data Embedding
+
+Data embedding involves transforming high-dimensional biological data (e.g., imaging, proteomics, gene expression) into lower-dimensional representations that preserve meaningful patterns or relationships. The Cell Map pipeline starts by generating embeddings for biological entities such as proteins or genes from each input data source (IF image, AP-MS, and/or perturb-seq). After source-specific embedding, a joint embedding is created and used to generate the protein-protein interaction (PPI) network, which is then used to create hierarchical cell maps. In the current pipeline, a [DenseNet model](https://www.nature.com/articles/s41592-019-0658-6) pre-trained on images from the Human Protein Atlas is used to generate image embeddings and node2vec is used to generate embeddings for AP-MS data. Joint/co-embeddings have been implemented using muse and proteingps in the current pipeline. Additional background is provided in [Schaffer et al. (2025)](https://www.nature.com/articles/s41586-025-08878-3) and [Lenkiewicz et al. (2025)](https://academic.oup.com/bioinformatics/article/41/6/btaf205/8159056).
+
+- CM4AI preprint: 
+    > Input data streams are integrated via the multi-scale integrated cell (MuSIC) software pipeline employing deep learning models and community detection algorithm.
+
+- In [MuSIC](https://www.nature.com/articles/s41586-021-04115-9) paper:
+    > For image embedding we used [DenseNet](https://www.nature.com/articles/s41592-019-0658-6), a convolutional neural network with superior performance in capturing protein locations relative to counter-stained cellular landmarks 
+
+- In [U2OS Multi-Modal Cell Map](https://www.nature.com/articles/s41586-025-08878-3) paper: 
+    > For the IF data, we applied DenseNet-121
+
+- U2OS Cell Map data to visualize via cytoscape: https://musicmaps.ai/u2os-cellmap/
+
+
+----
+
 - [CM4AI Data - Functional Analysis with CRISPR/PerturbSeq](https://www.youtube.com/watch?v=7RaOyiLi2cQ)
 
 Perturbation Correlation Network
@@ -138,7 +157,27 @@ conda activate cm4ai
 pip install cellmaps_pipeline
 ```
 
-Docs:
-- [CellMaps Pipeline](https://cellmaps-pipeline.readthedocs.io/en/latest/)
+- [Linux and Command Line Tutorial_Yale](https://docs.ycrc.yale.edu/resources/online-tutorials/)
 
-DenseMap (?)> IF embading maker
+
+### Cell Mapping Publications & Background Reading
+- [CM4AI Overview Pre-Print](https://www.biorxiv.org/content/10.1101/2024.05.21.589311v1)
+- [Cell Mapping Pipeline](https://academic.oup.com/bioinformatics/article/41/6/btaf205/8159056)
+- [U2OS Multi-Modal Cell Map](https://www.nature.com/articles/s41586-025-08878-3)
+- [Visible Neural Network/Drug Response Prediction in Cancer](https://www.sciencedirect.com/science/article/pii/S1535610820304888)
+- [LLM Gene Network Annotation](https://www.nature.com/articles/s41592-024-02525-x)
+
+
+
+### CM4AI Pipeline and Tools
+The official CM4AI Cell Map Pipeline code and documentation are available at:
+
+- GitHub Repository: https://github.com/idekerlab/cellmaps_pipeline
+- Documentation: https://cellmaps-pipeline.readthedocs.io/en/latest/
+
+In addition to these repositories, development forks and environment setup instructions that may be more easily adapted to CodeFest projects are available at:
+
+- GitHub Repository: https://github.com/CM4AI/cellmap_pipeline_experimental
+
+This development environment can be used to easily make changes to individual steps in the cell map AI/ML pipeline and log training parameters/metrics to MLFlow to assess the impact of new methods or pipeline configurations on generated cell maps.
+

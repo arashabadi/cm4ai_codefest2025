@@ -1,0 +1,9 @@
+HPA-Cell-Segmentation Results Summary (multi-channel, grayscale-fixed)
+======================================================================
+
+Matched triplets: 10
+Data root: C:\Users\bernalr3\OneDrive - UT Health San Antonio\Archive\Documents\CM4AI - WG\data
+Output dir: C:\Users\bernalr3\OneDrive - UT Health San Antonio\Archive\Documents\CM4AI - WG\analysis\segmentation_results2
+Channels used: red(microtubules)=R, yellow(ER)=Y, blue(nuclei)=B; green ignored.
+Models: nuclei_model.pth, cell_model.pth
+Scale factor: 0.25 | Device: CPU | Padding: True | Multi-channel: True

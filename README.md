@@ -132,7 +132,34 @@ Data embedding involves transforming high-dimensional biological data (e.g., ima
 - U2OS Cell Map data to visualize via cytoscape: https://musicmaps.ai/u2os-cellmap/
 
 
-----
+---
+
+### Cell Mapping Publications & Background Reading
+- [CM4AI Overview Pre-Print](https://www.biorxiv.org/content/10.1101/2024.05.21.589311v1)
+- [Cell Mapping Pipeline](https://academic.oup.com/bioinformatics/article/41/6/btaf205/8159056)
+- [U2OS Multi-Modal Cell Map](https://www.nature.com/articles/s41586-025-08878-3)
+- [Visible Neural Network/Drug Response Prediction in Cancer](https://www.sciencedirect.com/science/article/pii/S1535610820304888)
+- [LLM Gene Network Annotation](https://www.nature.com/articles/s41592-024-02525-x)
+
+
+
+### CM4AI Pipeline and Tools
+The official CM4AI Cell Map Pipeline code and documentation are available at:
+
+- GitHub Repository: https://github.com/idekerlab/cellmaps_pipeline
+- Documentation: https://cellmaps-pipeline.readthedocs.io/en/latest/
+
+In addition to these repositories, development forks and environment setup instructions that may be more easily adapted to CodeFest projects are available at:
+
+- GitHub Repository: https://github.com/CM4AI/cellmap_pipeline_experimental
+
+This development environment can be used to easily make changes to individual steps in the cell map AI/ML pipeline and log training parameters/metrics to MLFlow to assess the impact of new methods or pipeline configurations on generated cell maps.
+
+
+---
+
+- [Linux and Command Line Tutorial_Yale](https://docs.ycrc.yale.edu/resources/online-tutorials/)
+
 
 - [CM4AI Data - Functional Analysis with CRISPR/PerturbSeq](https://www.youtube.com/watch?v=7RaOyiLi2cQ)
 
@@ -156,28 +183,3 @@ conda create -n cm4ai python=3.8
 conda activate cm4ai
 pip install cellmaps_pipeline
 ```
-
-- [Linux and Command Line Tutorial_Yale](https://docs.ycrc.yale.edu/resources/online-tutorials/)
-
-
-### Cell Mapping Publications & Background Reading
-- [CM4AI Overview Pre-Print](https://www.biorxiv.org/content/10.1101/2024.05.21.589311v1)
-- [Cell Mapping Pipeline](https://academic.oup.com/bioinformatics/article/41/6/btaf205/8159056)
-- [U2OS Multi-Modal Cell Map](https://www.nature.com/articles/s41586-025-08878-3)
-- [Visible Neural Network/Drug Response Prediction in Cancer](https://www.sciencedirect.com/science/article/pii/S1535610820304888)
-- [LLM Gene Network Annotation](https://www.nature.com/articles/s41592-024-02525-x)
-
-
-
-### CM4AI Pipeline and Tools
-The official CM4AI Cell Map Pipeline code and documentation are available at:
-
-- GitHub Repository: https://github.com/idekerlab/cellmaps_pipeline
-- Documentation: https://cellmaps-pipeline.readthedocs.io/en/latest/
-
-In addition to these repositories, development forks and environment setup instructions that may be more easily adapted to CodeFest projects are available at:
-
-- GitHub Repository: https://github.com/CM4AI/cellmap_pipeline_experimental
-
-This development environment can be used to easily make changes to individual steps in the cell map AI/ML pipeline and log training parameters/metrics to MLFlow to assess the impact of new methods or pipeline configurations on generated cell maps.
-

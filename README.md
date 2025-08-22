@@ -74,6 +74,15 @@ scp -r USERNAME@frontera.tacc.utexas.edu:/work2/10900/USERNAME/frontera/analysis
 
 ```
 
+### What we’ll be working on for the next few days.
+- Morgan: Cropping and subcellular visualization on the stacked images (all colors on new dataset) via Google Colab (possibly Visual Studio Code)
+- Jebediah: Subcell tutorial working to change data
+- Rebecca: Currently rerunning the segmentation and renaming the files
+VS Code
+- Arash: Project management and github maintanence
+- Mona: Background/Significance for powerpoint
+* Editing google slides/powerpoint for everyone
+
 3. Now let's prepare the data for input of subcell
 
     ### ***[Access Data](https://github.com/arashabadi/cm4ai_codefest2025/tree/main/data)***
@@ -87,21 +96,13 @@ scp -r USERNAME@frontera.tacc.utexas.edu:/work2/10900/USERNAME/frontera/analysis
 
 5. prepare cropped images for subcell input (Morgan)
 
-    https://github.com/morgansmith27
+    https://github.com/morgansmith27/cm4ai_project
 
 6. Run subcell (Jedediah)
 
    https://github.com/OriginalBrick/cm4ai-codefest
 
-
-## What we’ll be working on for the next few days.
-- Morgan: Cropping and subcellular visualization on the stacked images (all colors on new dataset) via Google Colab (possibly Visual Studio Code)
-- Jebediah: Subcell tutorial working to change data
-- Rebecca: Currently rerunning the segmentation and renaming the files
-VS Code
-- Arash: Project management and github maintanence
-- Mona: Background/Significance for powerpoint
-* Editing google slides/powerpoint for everyone
+> hpacellseg failed to properly segment our cells. Thus, we used CellPose for our segmentaion which can be found in Jedediah and Morgan repos.
 
 ---
 # Acknowledgments

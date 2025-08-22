@@ -5,7 +5,7 @@
 This repo is related to the participation in 2025 CM4AI [Hackathon at UAB](https://www.uab.edu/medicine/informatics/news-events/events/cm4ai-codefest-at-uab)
 
 ---
-# Day 1 (9AM-5PM)
+# Day 1 (9AM-5PM) _ August 14th, 2025
 
 Some suggested projects:
 1. Embedding
@@ -47,7 +47,7 @@ we downloaded by python src/download.py
 Hpacellseg should be run as a python script.
 
 ---
-# Day 2 (9AM-5PM)
+# Day 2 (9AM-5PM) _ August 15th, 2025
 
 I have to connect my github account to TACC / shift to cheaha / use wget or curl to download the prepared code from github into TACC.
 I will go with wget raw file (python script to run hpacellseg) from github.
@@ -105,8 +105,7 @@ VS Code
 
 ---
 # Acknowledgments
-
-We would like to thank the following people who provided significant assistance and support throughout these two days:
+We would like to thank all CM4AI team and the following people who provided significant assistance and support:
 
 - [Wade Schulz](https://medicine.yale.edu/profile/wade-schulz/) (Yale)
 - [Thomas Durant](https://medicine.yale.edu/profile/thomas-durant/) (Yale)

@@ -1,2 +1,5 @@
 cm4ai-tutorial-immunofluorescence-main/data/
 .DS_Store
+
+/analysis/cellpose_results/
+/analysis/cellpose_results2/

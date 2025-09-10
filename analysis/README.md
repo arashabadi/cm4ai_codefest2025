@@ -1,48 +1,49 @@
-# CM4AI CodeFest 2025 — IF segmentation, cropping, and SubCell embeddings
+# IF segmentation, cropping, and SubCell embeddings
 
-This repository contains a minimal, reproducible workflow to segment immunofluorescence fields, crop per‑cell patches across channels, and generate SubCell embeddings for a small pilot set.
+This repository provides a streamlined, reproducible workflow to segment immunofluorescence fields, crop per-cell patches across channels, and generate SubCell embeddings for a pilot dataset.
 
-## TLDR
+It consolidates earlier efforts from team members, resolves pitfalls, and delivers an optimized, updated version. The workflow reflects both collaborative contributions and my work in refining, troubleshooting, and compiling the code into a cohesive pipeline.
 
-- Input: the first 10 images from the paclitaxel subset of the CM4AI IF tutorial dataset
-- Step 1: segment reference channel with Cellpose 4.0.6 and save full artifacts
-- Step 2: crop 640×640 per‑cell patches across red, yellow, blue, green using the label mask
-- Step 3: run SubCellPortable on the crop lists and collect embeddings
-- Output: masks, QA images, per‑cell crops, and SubCell embeddings with a manifest
+**Team contributions:**
+
+- Jedediah:  https://github.com/OriginalBrick/cm4ai-codefest
+
+- Morgan:  https://github.com/morgansmith27/cm4ai_project
+
+- Rebecca:  https://github.com/Bayes-Student1/CM4AI-Group-Project-
+
+
+## Overview
+
+- **Input:** the first 10 images from the paclitaxel subset of the CM4AI IF tutorial dataset
+- **Step 1:** segment reference channel with Cellpose 4.0.6 and save full artifacts
+- **Step 2:** crop 640×640 per‑cell patches across red, yellow, blue, green using the label mask
+- **Step 3:** run SubCellPortable on the crop lists and collect embeddings
+- **Output:** masks, overlay images, per‑cell crops, and SubCell embeddings
+
+## Results storage
+
+Due to output size, compressed outputs for all three stages are archived to Google Drive.
+
+- Link: https://drive.google.com/drive/folders/1VtM81O9RpmnUxwtedyhIrV2rf3gjwqRu?usp=sharing
+- Contents
+  1. `cellpose_results_sep9.zip` zip of masks and etc.
+  2. `cell_crops_sep9.zip` zips of per‑cell crops and CSVs (pp for post process of handling neighbors)
+  3. `subcell_sep9.zip` zip of embeddings in `SubCellPortable/output`
+
 
 ## Data selection
 
 - Source dataset: https\://github.com/CM4AI/cm4ai-tutorial-immunofluorescence/
-- We selected the first 10 images under paclitaxel for each channel. Channel folders follow the tutorial layout:
-  ```
-  data/
-    red/*.tif|*.png|*.jpg
-    yellow/*.tif|*.png|*.jpg
-    blue/*.tif|*.png|*.jpg
-    green/*.tif|*.png|*.jpg
-  ```
-
- Images in the `./data` folder was copied manually. but [01_data_transfer.sh](./01_data_transfer.sh) is a try to auto transfer the data. (took too long and I cancelled it)
+- We selected the first 10 images under paclitaxel for each channel. Images in the `./data` folder was copy/pasted manually. but [01_data_transfer.sh](./01_data_transfer.sh) is a try to auto transfer the data.
 
 ## Environments
 
-Create the Cellpose environment on macOS or HPC. The repo includes `envs/cellpose.yml`.
+Information regarding creating conda environments for both tools are written in [README file in ./envs](../envs/README.md) and will be maintained. 
 
-```bash
-conda env create -f envs/cellpose.yml
-conda activate cellpose
-```
-
-Colab quick start:
-
-```python
-%pip install "cellpose==4.0.6" "torch" "torchvision" "torchaudio" "scikit-image>=0.22.0" "tqdm>=4.66.0" "pandas>=2.2.0"
-```
-
-Notes
-
+Notes:
+All steps have been performed on macbook with M4 Apple Silicon cheapset. 
 - macOS Apple Silicon uses MPS by default. The notebook enables MPS with PyTorch and falls back to CPU.
-- If you see ABI errors from NumPy or scikit‑image, pin `numpy==1.26.4` and `scikit-image==0.22.0` from conda‑forge and reinstall OpenCV.
 
 ## Repository layout
 
@@ -54,7 +55,7 @@ analysis/
   cell_crops/                            # per‑cell crops
   cell_crops_pp/                         # per‑cell crops with neighbors suppressed
   SubCellPortable/                       # SubCell code and config
-data/
+data/ (.jpg)
   red/ yellow/ blue/ green/              # raw channels for paclitaxel subset
 envs/
   cellpose.yml
@@ -64,7 +65,7 @@ README.md
 ## Notebook 1: segmentation with Cellpose 4.0.6
 
 - File: `analysis/02_run_cellpose_v4_man-dim.ipynb`
-- Device: macOS 15 on Apple Silicon, PyTorch MPS. GPU nodes on HPC also work.
+- Device: macOS 15.5 on Apple Silicon M4, PyTorch MPS. GPU nodes on HPC also work.
 - Reference channel: `yellow`
 - Model: `cpsam` (Cellpose‑SAM v4)
 - Key parameters: `diameter=80`, `cellprob_threshold=-10`, `flow_threshold=0.3`, `normalize=True`, `invert=False`
@@ -134,43 +135,6 @@ Outputs
 
 - Embeddings and predictions under `analysis/SubCellPortable/output`
 - The exact filenames and shapes depend on the SubCellPortable version. This run produced per‑cell embedding vectors and logs without errors once the header and output path issues were fixed.
-
-## Reproducibility notes
-
-- We used the first 10 images from the paclitaxel subset for all channels to keep runtime short.
-- Reference channel for segmentation was yellow. Cropping swaps `*_yellow` to each target channel name to locate the matching inputs.
-- All key parameters and environment versions are stored in the notebooks and `run_metadata.json`.
-
-## Troubleshooting
-
-- `cv2.imread('r_image')` NoneType has no attribute `ndim`
-  - Your CSV was parsed as data because the header was not commented. Use `path_list_subcell.csv` or comment the first line.
-- Outputs missing in `output/`
-  - Create the folder ahead of time or let the cropper set it up. SubCell will not create it in some versions.
-- Slow or hot MPS on Mac
-  - Lower batch size in Cellpose. On HPC with CUDA, increase batch size for throughput.
-- Misaligned crops across channels
-  - Verify channel folder names and `_yellow` to target channel suffix swap logic in the cropper.
-
-## Results storage
-
-Due to output size, compressed artifacts for all three stages are archived to Google Drive.
-
-- Link: https://drive.google.com/drive/folders/1VtM81O9RpmnUxwtedyhIrV2rf3gjwqRu?usp=sharing
-- Contents
-  - `cellpose_results/` zip of masks and QA
-  - `cell_crops/` and `cell_crops_pp/` zips of per‑cell crops and CSVs
-  - `SubCellPortable/output/` zip of embeddings and logs
-
-## Acknowledgments
-
-- CM4AI tutorial maintainers and CodeFest organizers
-- Cellpose and SubCellPortable authors and contributors
-
-## License
-
-Include an appropriate license file for your code and notebooks if you plan to share beyond the event.
-
 
 
 <!---

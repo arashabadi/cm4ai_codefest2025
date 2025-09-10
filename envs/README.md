@@ -24,6 +24,7 @@ conda install -c conda-forge umap-learn pynndescent numba llvmlite
 pip install ipykernel
 python -m ipykernel install --user --name subcell --display-name "subcell"
 ```
+- If you see ABI errors from NumPy or scikit‑image, pin `numpy==1.26.4` and `scikit-image==0.22.0` from conda‑forge and reinstall OpenCV.
 
 # SubCell installation Auto (macOS) - (under maintenance)
 

@@ -1,8 +1,6 @@
 # IF segmentation, cropping, and SubCell embeddings
 
-This repository provides a streamlined, reproducible workflow to segment immunofluorescence fields, crop per-cell patches across channels, and generate SubCell embeddings for a pilot dataset.
-
-It consolidates earlier efforts from team members, resolves pitfalls, and delivers an optimized, updated version. The workflow reflects both collaborative contributions and my work in refining, troubleshooting, and compiling the code into a cohesive pipeline.
+This repository consolidates earlier efforts from team members, resolves pitfalls, and delivers an optimized, updated version. The workflow reflects both collaborative contributions and my work in refining, troubleshooting, and compiling the code into a cohesive pipeline.
 
 **Team contributions:**
 
@@ -118,23 +116,25 @@ Important gotchas and fixes
 
 ## Step 3: SubCell embeddings
 
-- Location: `analysis/SubCellPortable/`
-- You can symlink or copy the SubCellPortable repo here.
-- Edit `config.yaml` to match channels and hardware. Ensure `create_csv` points to the commented header CSV if needed by your fork.
-- Run from the terminal:
+- Location: `analysis/SubCellPortable/` (local clone of SubCellPortable)
+- Input: `path_list.csv` from Notebook 2 (header commented)
+- Config: `config.yaml` must specify
+- model_channels: "rybg" (All)
+- model_type: `"mae_contrast_supcon_model"`
+- update_model: False after first run to avoid repeated downloads
+- gpu: -1 for CPU/MPS on macOS
+
+Run:
 
 ```bash
 cd analysis/SubCellPortable
-# verify config.yaml
 python process.py
 ```
 
-- The process reads the CSV created in Notebook 2, loads the four channel crops per row, and writes outputs to `SubCellPortable/output`.
-
-Outputs
-
-- Embeddings and predictions under `analysis/SubCellPortable/output`
-- The exact filenames and shapes depend on the SubCellPortable version. This run produced per‑cell embedding vectors and logs without errors once the header and output path issues were fixed.
+Outputs (per cell, in SubCellPortable/output/):
+- *_embedding.npy – feature vectors (dim ~6k)
+- *_probabilities.npy – class prediction scores (252 classes)
+- *_attention_map.png – visual attention overlays
 
 
 <!---

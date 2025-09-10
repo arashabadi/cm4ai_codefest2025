@@ -27,7 +27,15 @@ python -m ipykernel install --user --name subcell --display-name "subcell"
 
 # SubCell installation Manually (macOS ARM)
 
-- If you see ABI errors from NumPy or scikit‑image, pin `numpy==1.26.4` and `scikit-image==0.22.0` from conda‑forge and reinstall OpenCV. So it can be modifed as this:
+- If you see ABI errors from NumPy or scikit‑image, pin `numpy==1.26.4` and `scikit-image==0.22.0` and `scipy==1.11.*` from conda‑forge and reinstall OpenCV. 
+
+- plus SubCell deps: `torch, torchvision, transformers, pandas, PyYAML, requests, umap-learn, matplotlib, seaborn`.
+
+- macOS / Apple Silicon (M4) / torch==2.4.1 (CUDA: False, MPS: True) / 
+
+
+
+So it can be modifed as this:
 
 ```bash
 # Clone

@@ -117,42 +117,69 @@ Important gotchas and fixes
 
 ## Step 3: SubCell embeddings
 
-SubCellPortable is used to generate **per-cell embeddings, class predictions, and attention maps** from the cropped multi-channel images. The workflow reads each row of `path_list.csv` (from Notebook 2), loads the four channel crops, and applies the pretrained SubCell model.
+SubCellPortable is used to generate **per-cell embeddings (high-dim vectors), class predictions (31 localization classes), and attention maps** from the cropped multi-channel images. Also, UMAP can be used to visualize embedding structure / condition differences The workflow reads each row of `path_list.csv` (from Notebook 2), loads the four channel crops, and applies the pretrained SubCell model.
 
- **Location:** analysis/SubCellPortable/ (local clone of [SubCellPortable](https://github.com/CellProfiling/SubCellPortable)). ***Current pre-configured SubCell setup should be downloaded through [Google Drive](https://drive.google.com/drive/folders/1VtM81O9RpmnUxwtedyhIrV2rf3gjwqRu?usp=sharing).***
+ **Location of SubCell:** `analysis/SubCellPortable/` (local clone of [SubCellPortable](https://github.com/CellProfiling/SubCellPortable)). ***Current pre-configured SubCell setup should be downloaded through [Google Drive](https://drive.google.com/drive/folders/1VtM81O9RpmnUxwtedyhIrV2rf3gjwqRu?usp=sharing).***
 
-### Execution of SubCell options
+---
+### SubCell Running inference (3 equivalent options)
 
 SubCell can be run in three ways:
 
-1. CPU only – portable, works everywhere, slower but reliable.
-2. Apple MPS (macOS ARM) – automatic fallback when gpu=-1, gives some speedup.
-3 CUDA GPU (HPC cluster) – set gpu:0 or higher; fastest option for large datasets.
+- **Option 1**
+edit process.py directly and Then run `python process.py`
 
-> Note: I’m working on packaging all SubCell terminal commands into a single Jupyter notebook (.ipynb) so the entire workflow can be followed step-by-step without switching between shell and notebooks.
+  example (Modify lines ~36–40):
+  ```python
+  config["model_channels"] = "ybg"
+  config["model_type"] = "mae_contrast_supcon_model"
+  config["update_model"] = False
+  config["create_csv"] = True
+  config["gpu"] = 0   # use -1 for CPU
+  ```
+
+- **Option 2**
+pass flags at runtime whike running `python process.py`
+
+  example:
+  ```bash
+  python process.py -c ybg -t mae_contrast_supcon_model -u False -csv True -g 0
+  ```
+- **Option 3**
+edit `config.yaml` and then run `python process.py`
+
+  example:
+  ```yaml
+  model_channels: "ybg"
+  model_type: "mae_contrast_supcon_model"
+  update_model: False
+  create_csv: True
+  gpu: 0
+  ```
+
+> Note: We used **Option 3** but I’m working on packaging all SubCell terminal commands into a single Jupyter notebook (.ipynb) so the entire workflow can be followed step-by-step without switching between shell and notebooks.
 
 
-### **Input:** `path_list.csv` from Notebook 2
+### **Input:** 
+`path_list.csv` from Notebook 2
 should be not commented header, UTF-8, no BOM, no quotes, Unix newlines... so SubCell doesn’t misinterpret it as a data row.
+- **Configuration:** `config.yaml`
+- **model_channels:** "rybg" (red, yellow, blue, green)
+- **model_type:** `"mae_contrast_supcon_model"`
+- **update_model:** False (after first run, prevents re-downloading weights)
+- **gpu:** -1 to force CPU/MPS (works good on macOS Apple Silicon; GPU/HPC nodes can be enabled by changing this flag).
 
+### Outputs
 
-- Config: `config.yaml` must specify
-- model_channels: "rybg" (All)
-- model_type: `"mae_contrast_supcon_model"`
-- update_model: False after first run to avoid repeated downloads
-- gpu: -1 for CPU/MPS on macOS
-
-
-
-- Configuration: `config.yaml`
-- model_channels: "rybg" (red, yellow, blue, green)
-	•	model_type: "mae_contrast_supcon_model"
-	•	update_model: False (after first run, prevents re-downloading weights)
-	•	gpu: -1 to force CPU/MPS (works best on macOS Apple Silicon; GPU/HPC nodes can be enabled by changing this flag).
+For each cell, SubCell writes to the output/ directory:
+- `*_embedding.npy` → ~1536-dim feature vector.
+- `*_probabilities.npy` → localization class scores (31 categories).
+- `*_attention_map.png` → heatmap showing where the model focused.
+- `results.csv` → consolidated metadata, probabilities, and embeddings.
 
 ---
-> * ***This is just FYI*** *: Regarding input `path_list.csv` and packages on macOS. I was repeatedly hitting error (`cv2.imread('r_image') -> NoneType has no attribute 'ndim'`) which came from a **formatting mismatch** between what SubCell expects and what my path_list.csv actually looked like.*
 
+* ***This is just FYI*** *: Regarding input `path_list.csv` and packages on macOS. I was repeatedly hitting error (`cv2.imread('r_image') -> NoneType has no attribute 'ndim'`) which came from a **formatting mismatch** between what SubCell expects and what my path_list.csv actually looked like.*
 **This problem has been solved in the new version of Notebook 2** and the root causes were:
 
 1. **Header not commented**
@@ -179,38 +206,6 @@ then the code tries to process `"r_image"` as if it were an image path, calling 
 
 - Once all four aligned, SubCell could iterate over each row in path_list.csv, load the 4 PNGs, run the encoder + classifier, and write results to disk without crashing.
 
-### How to run
-
-From the SubCell directory:
-
-cd analysis/SubCellPortable
-python process.py
-
-### Outputs
-
-For each cropped cell, results are written to analysis/SubCellPortable/output/:
-	•	*_embedding.npy – high-dimensional feature vectors (~6k dimensions)
-	•	*_probabilities.npy – prediction scores across 252 subcellular classes
-	•	*_attention_map.png – visual heatmaps showing where the model focused
-
-
-
-----
-
-
-
-
-Run:
-
-```bash
-cd analysis/SubCellPortable
-python process.py
-```
-
-Outputs (per cell, in SubCellPortable/output/):
-- *_embedding.npy – feature vectors (dim ~6k)
-- *_probabilities.npy – class prediction scores (252 classes)
-- *_attention_map.png – visual attention overlays
 
 
 <!---

@@ -37,7 +37,7 @@ Due to output size, compressed outputs for all three stages are archived to Goog
 
 ## Environments
 
-Information regarding creating conda environments for both tools are written in [README file in ./envs](../envs/README.md) and will be maintained. 
+Information regarding creating conda environments for both tools are written in [README file in ./envs](../envs/) and will be maintained. 
 
 Notes:
 All steps have been performed on macbook with M4 Apple Silicon cheapset. 
@@ -116,7 +116,89 @@ Important gotchas and fixes
 
 ## Step 3: SubCell embeddings
 
-- Location: `analysis/SubCellPortable/` (local clone of SubCellPortable)
+SubCellPortable is used to generate **per-cell embeddings, class predictions, and attention maps** from the cropped multi-channel images. The workflow reads each row of `path_list.csv` (from Notebook 2), loads the four channel crops, and applies the pretrained SubCell model.
+
+### **Location:** analysis/SubCellPortable/ (local clone of [SubCellPortable](https://github.com/CellProfiling/SubCellPortable))
+
+  > Current pre-configured SubCell setup should be downloaded through [Google Drive](https://drive.google.com/drive/folders/1VtM81O9RpmnUxwtedyhIrV2rf3gjwqRu?usp=sharing).
+
+### **Input:** `path_list.csv` 
+should be not commented header, UTF-8, no BOM, no quotes, Unix newlines... so SubCell doesn’t misinterpret it as a data row.
+
+	•	Configuration (config.yaml):
+	•	model_channels: "rybg" (red, yellow, blue, green)
+	•	model_type: "mae_contrast_supcon_model"
+	•	update_model: False (after first run, prevents re-downloading weights)
+	•	gpu: -1 to force CPU/MPS (works best on macOS Apple Silicon; GPU/HPC nodes can be enabled by changing this flag).
+
+---
+> * ***This is just FYI*** *: Regarding input `path_list.csv`; I was repeatedly hitting error (`cv2.imread('r_image') -> NoneType has no attribute 'ndim'`) which came from a **formatting mismatch** between what SubCell expects and what my path_list.csv actually looked like.*
+
+**This problem has been solved in the new version of Notebook 2** and the root causes were:
+
+1. Header not commented
+
+SubCell’s process.py is written to treat the CSV as headerless and it manually maps columns.
+
+If the first line is a plain header like:
+
+r_image,y_image,b_image,g_image,output_folder,output_prefix
+
+
+then the code tries to process "r_image" as if it were an image path, calling cv2.imread("r_image") → fails.
+
+That’s why commenting the header (# r_image,...) fixed it: the parser skips it, and the first actual row contains valid PNG paths.
+
+Output folder missing
+
+The CSV told SubCell to write results to output/…, but you didn’t have an output/ folder yet. Some runs silently skipped saving until you created it (mkdir -p output).
+
+Repeated header lines inside the CSV (when you first concatenated/edited files)
+
+At some point you had stray header lines duplicated in the middle. These also caused the same imread('r_image') failure. Later you cleaned them out with the “bad rows scan”.
+
+Library version mismatches (early on)
+
+ValueError: numpy.dtype size changed happened because your NumPy and scikit-image wheels were ABI-incompatible.
+
+Fix: pinning numpy=1.26.4 and scikit-image=0.22.0 (with SciPy 1.11) from conda-forge, uninstalling pip wheels, reinstalled OpenCV. After that, image loading worked consistently.
+
+Config.yaml update_model flag
+
+While not fatal, leaving update_model: True made SubCell re-download weights every run. Setting it to False after the first successful download stabilized runtime.
+
+
+Once all four aligned, SubCell could iterate over each row in path_list.csv, load the 4 PNGs, run the encoder + classifier, and write results to disk without crashing.
+---
+
+### How to run
+
+From the SubCell directory:
+
+cd analysis/SubCellPortable
+python process.py
+
+### Outputs
+
+For each cropped cell, results are written to analysis/SubCellPortable/output/:
+	•	*_embedding.npy – high-dimensional feature vectors (~6k dimensions)
+	•	*_probabilities.npy – prediction scores across 252 subcellular classes
+	•	*_attention_map.png – visual heatmaps showing where the model focused
+
+### Execution options
+
+SubCell can be run in three ways:
+	1.	CPU only – portable, works everywhere, slower but reliable.
+	2.	Apple MPS (macOS ARM) – automatic fallback when gpu=-1, gives some speedup.
+	3.	CUDA GPU (HPC cluster) – set gpu:0 or higher; fastest option for large datasets.
+
+> Note: I’m working on packaging all SubCell terminal commands into a single Jupyter notebook (.ipynb) so the entire workflow can be followed step-by-step without switching between shell and notebooks.
+
+
+
+----
+- Location: `analysis/SubCellPortable/` (local clone of SubCellPortable) 
+
 - Input: `path_list.csv` from Notebook 2 (header commented)
 - Config: `config.yaml` must specify
 - model_channels: "rybg" (All)

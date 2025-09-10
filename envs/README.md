@@ -29,6 +29,7 @@ conda activate subcell
 
 # Install project deps
 pip install -r requirements.txt #You have to be in your conda env and then try installing through pip
+conda install -c conda-forge umap-learn pynndescent numba llvmlite
 
 # Register the Jupyter kernel for JupyterLab
 pip install ipykernel

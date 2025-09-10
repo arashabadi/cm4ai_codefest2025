@@ -4,8 +4,27 @@
 
 This repo is related to the participation in 2025 CM4AI [Hackathon at UAB](https://www.uab.edu/medicine/informatics/news-events/events/cm4ai-codefest-at-uab)
 
+## UPDATE - SEP 9,2025:
+> We have **successfully completed the SubCell embeddings on the segmented and cropped IF images**. This represents a key milestone in our project. 
+
+The integrated code and outputs are [available here](https://github.com/arashabadi/cm4ai_codefest2025/tree/main/analysis) (see README.md for details).
+
+Along the way, we strengthened three core components of the workflow, building on the earlier notebooks and contributions from the team:
+- **Segmentation:** We identified and resolved inconsistencies in per-channel cropping, updating to the latest Cellpose (v4.0.6) and tuning parameters to yield consistent and reliable masks across channels. While there is still room to further optimize for tightly clustered cells, the segmentation pipeline is now robust and reproducible.
+- **Cropping & Preprocessing:** We established a standardized per-cell cropping workflow that preserves cell counts across channels, introduces neighbor-masked variants, and outputs structured path_list.csv files fully compatible with SubCellPortable. This provides a clean foundation for downstream inference.
+- **SubCell Inference & Analysis:** We successfully deployed SubCell locally, resolved technical issues in environment setup and CSV parsing, and now generate embeddings, attention maps, and class probabilities.
+
+With these foundations in place, the next step is to proceed with comparative analysis using the cm4ai pipeline, after which we plan to draft the preprint. 
+
+## UPDATE - SEP 2,2025:
+1) We are currently working on finishing the Subcell embedding on our segmented and cropped images. We hope to have this completed by the end of next week. (Arash Abadi and Jebediah Smith)
+
+2) We are finalizing the full cm4ai pipeline on the subset of images we used in the subcell process. Once completed , we will begin our comparative analysis. (Morgan Smith and Rebecca Bernal)
+
+3) We aim to write up these results as a preprint submission to bioarXiv (hacker) with CM4AI team approval and guidance.
+
 ---
-# Day 1 (9AM-5PM)
+# Day 1 (9AM-5PM) - August 14th, 2025
 
 Some suggested projects:
 1. Embedding
@@ -47,7 +66,7 @@ we downloaded by python src/download.py
 Hpacellseg should be run as a python script.
 
 ---
-# Day 2 (9AM-5PM)
+# Day 2 (9AM-5PM) - August 15th, 2025
 
 I have to connect my github account to TACC / shift to cheaha / use wget or curl to download the prepared code from github into TACC.
 I will go with wget raw file (python script to run hpacellseg) from github.
